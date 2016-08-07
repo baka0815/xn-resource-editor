@@ -175,7 +175,6 @@ procedure TuComboBox.ListWndProc(var Message: TMessage);
 var
   callDefProc : boolean;
 begin
-  callDefProc := False;
   case message.Msg of
     WM_DESTROY :
       begin
