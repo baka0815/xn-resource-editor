@@ -30,7 +30,6 @@ type
     FuDefListProc : Pointer;
     fCodePage: Integer;
 
-    procedure EditWndProc(var Message: TMessage);
     procedure ListWndProc(var Message: TMessage);
     procedure SetCodePage(const Value: Integer);
     function GetWideText: WideString;
@@ -41,6 +40,7 @@ type
     procedure CreateWnd; override;
     procedure DestroyWindowHandle; override;
     procedure DropDown; override;
+    procedure EditWndProc(var Message: TMessage); override;
   public
     constructor Create (AOwner : TComponent); override;
     destructor Destroy; override;
