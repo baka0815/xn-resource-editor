@@ -168,7 +168,7 @@
 			<VersionInfoKeys Name="LegalTrademarks">All rights reserved</VersionInfoKeys>
 			<VersionInfoKeys Name="OriginalFilename">XNResourceEditor.exe</VersionInfoKeys>
 			<VersionInfoKeys Name="ProductName">XN Resource Editor</VersionInfoKeys>
-			<VersionInfoKeys Name="ProductVersion">3.0.1/VersionInfoKeys>
+			<VersionInfoKeys Name="ProductVersion">3.0.1</VersionInfoKeys>
 			<VersionInfoKeys Name="Comments"></VersionInfoKeys>
 		</VersionInfoKeys>
 	</Delphi.Personality>
