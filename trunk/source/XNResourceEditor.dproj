@@ -1,0 +1,172 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{60941fc1-6d0a-44fd-9c94-de4c1d9bbb48}</ProjectGuid>
+    <MainSource>XNResourceEditor.dpr</MainSource>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
+    <DCC_DependencyCheckOutputName>..\XNResourceEditor.exe</DCC_DependencyCheckOutputName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Version>7.0</Version>
+    <DCC_AssertionsAtRuntime>False</DCC_AssertionsAtRuntime>
+    <DCC_DebugInformation>False</DCC_DebugInformation>
+    <DCC_LocalDebugSymbols>False</DCC_LocalDebugSymbols>
+    <DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
+    <DCC_ExeOutput>..</DCC_ExeOutput>
+    <DCC_DcuOutput>..\dcu</DCC_DcuOutput>
+    <DCC_ObjOutput>..\dcu</DCC_ObjOutput>
+    <DCC_HppOutput>..\dcu</DCC_HppOutput>
+    <DCC_UnitSearchPath>..\prerequisites\LowLevel\Source;..\prerequisites\ImageTypes\Source;..\prerequisites\MiscUnits\Source;..\prerequisites\ResourceUtils\Source;..\prerequisites\TNTComponents\Source;..\prerequisites\VirtualTreeview\Source;..\prerequisites\d12componentpackages\Source;..\components\source</DCC_UnitSearchPath>
+    <DCC_ResourcePath>..\prerequisites\LowLevel\Source;..\prerequisites\ImageTypes\Source;..\prerequisites\MiscUnits\Source;..\prerequisites\ResourceUtils\Source;..\prerequisites\TNTComponents\Source;..\prerequisites\VirtualTreeview\Source;..\prerequisites\d12componentpackages\Source;..\components\source</DCC_ResourcePath>
+    <DCC_ObjPath>..\prerequisites\LowLevel\Source;..\prerequisites\ImageTypes\Source;..\prerequisites\MiscUnits\Source;..\prerequisites\ResourceUtils\Source;..\prerequisites\TNTComponents\Source;..\prerequisites\VirtualTreeview\Source;..\prerequisites\d12componentpackages\Source;..\components\source</DCC_ObjPath>
+    <DCC_IncludePath>..\prerequisites\LowLevel\Source;..\prerequisites\ImageTypes\Source;..\prerequisites\MiscUnits\Source;..\prerequisites\ResourceUtils\Source;..\prerequisites\TNTComponents\Source;..\prerequisites\VirtualTreeview\Source;..\prerequisites\d12componentpackages\Source;..\components\source</DCC_IncludePath>
+    <DCC_Define>RELEASE</DCC_Define>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <Version>7.0</Version>
+    <DCC_AssertionsAtRuntime>False</DCC_AssertionsAtRuntime>
+    <DCC_ExeOutput>..</DCC_ExeOutput>
+    <DCC_DcuOutput>..\dcu</DCC_DcuOutput>
+    <DCC_ObjOutput>..\dcu</DCC_ObjOutput>
+    <DCC_HppOutput>..\dcu</DCC_HppOutput>
+    <DCC_UnitSearchPath>..\prerequisites\LowLevel\Source;..\prerequisites\ImageTypes\Source;..\prerequisites\MiscUnits\Source;..\prerequisites\ResourceUtils\Source;..\prerequisites\TNTComponents\Source;..\prerequisites\VirtualTreeview\Source;..\prerequisites\d12componentpackages\Source;..\components\source</DCC_UnitSearchPath>
+    <DCC_ResourcePath>..\prerequisites\LowLevel\Source;..\prerequisites\ImageTypes\Source;..\prerequisites\MiscUnits\Source;..\prerequisites\ResourceUtils\Source;..\prerequisites\TNTComponents\Source;..\prerequisites\VirtualTreeview\Source;..\prerequisites\d12componentpackages\Source;..\components\source</DCC_ResourcePath>
+    <DCC_ObjPath>..\prerequisites\LowLevel\Source;..\prerequisites\ImageTypes\Source;..\prerequisites\MiscUnits\Source;..\prerequisites\ResourceUtils\Source;..\prerequisites\TNTComponents\Source;..\prerequisites\VirtualTreeview\Source;..\prerequisites\d12componentpackages\Source;..\components\source</DCC_ObjPath>
+    <DCC_IncludePath>..\prerequisites\LowLevel\Source;..\prerequisites\ImageTypes\Source;..\prerequisites\MiscUnits\Source;..\prerequisites\ResourceUtils\Source;..\prerequisites\TNTComponents\Source;..\prerequisites\VirtualTreeview\Source;..\prerequisites\d12componentpackages\Source;..\components\source</DCC_IncludePath>
+    <DCC_Define>DEBUG</DCC_Define>
+  </PropertyGroup>
+  <ProjectExtensions>
+    <Borland.Personality>Delphi.Personality</Borland.Personality>
+    <Borland.ProjectType>VCLApplication</Borland.ProjectType>
+    <BorlandProject>
+<BorlandProject xmlns=""> <Delphi.Personality>   <Parameters>
+      <Parameters Name="UseLauncher">False</Parameters>
+      <Parameters Name="LoadAllSymbols">True</Parameters>
+      <Parameters Name="LoadUnspecifiedSymbols">False</Parameters>
+    </Parameters>
+    <VersionInfo>
+      <VersionInfo Name="IncludeVerInfo">True</VersionInfo>
+      <VersionInfo Name="AutoIncBuild">False</VersionInfo>
+      <VersionInfo Name="MajorVer">3</VersionInfo>
+      <VersionInfo Name="MinorVer">0</VersionInfo>
+      <VersionInfo Name="Release">1</VersionInfo>
+      <VersionInfo Name="Build">2</VersionInfo>
+      <VersionInfo Name="Debug">False</VersionInfo>
+      <VersionInfo Name="PreRelease">True</VersionInfo>
+      <VersionInfo Name="Special">False</VersionInfo>
+      <VersionInfo Name="Private">False</VersionInfo>
+      <VersionInfo Name="DLL">False</VersionInfo>
+      <VersionInfo Name="Locale">2057</VersionInfo>
+      <VersionInfo Name="CodePage">1252</VersionInfo>
+    </VersionInfo>
+    <VersionInfoKeys>
+      <VersionInfoKeys Name="CompanyName">Colin Wilson / sources restored by twm</VersionInfoKeys>
+      <VersionInfoKeys Name="FileDescription">XN Resource Editor</VersionInfoKeys>
+      <VersionInfoKeys Name="FileVersion">3.0.1.2</VersionInfoKeys>
+      <VersionInfoKeys Name="InternalName">XNResourceEditor</VersionInfoKeys>
+      <VersionInfoKeys Name="LegalCopyright">Copyright (c) Colin Wilson 2005</VersionInfoKeys>
+      <VersionInfoKeys Name="LegalTrademarks">All rights reserved</VersionInfoKeys>
+      <VersionInfoKeys Name="OriginalFilename">XNResourceEditor.exe</VersionInfoKeys>
+      <VersionInfoKeys Name="ProductName">XN Resource Editor</VersionInfoKeys>
+      <VersionInfoKeys Name="ProductVersion">3.0.1</VersionInfoKeys>
+      <VersionInfoKeys Name="Comments"></VersionInfoKeys>
+    </VersionInfoKeys>
+    <Source>
+      <Source Name="MainSource">XNResourceEditor.dpr</Source>
+    </Source>
+  </Delphi.Personality> </BorlandProject></BorlandProject>
+  </ProjectExtensions>
+  <ItemGroup />
+  <ItemGroup>
+    <DelphiCompile Include="XNResourceEditor.dpr">
+      <MainSource>MainSource</MainSource>
+    </DelphiCompile>
+    <DCCReference Include="AcceleratorResourceForm.pas">
+      <Form>fmAcceleratorResource</Form>
+    </DCCReference>
+    <DCCReference Include="AddResourceDialog.pas">
+      <Form>dlgAddResource</Form>
+    </DCCReference>
+    <DCCReference Include="CloneResourceDialog.pas">
+      <Form>dlgCloneResource</Form>
+    </DCCReference>
+    <DCCReference Include="CursorGraphicsResourceForm.pas">
+      <Form>fmCursorGraphicsResource</Form>
+    </DCCReference>
+    <DCCReference Include="DescriptionRCDataResourceForm.pas">
+      <Form>fmRCDataDescriptionResource</Form>
+    </DCCReference>
+    <DCCReference Include="DialogResourceForm.pas">
+      <Form>fmDialogResource</Form>
+    </DCCReference>
+    <DCCReference Include="FormResourceForm.pas">
+      <Form>fmRCDataFormResource</Form>
+    </DCCReference>
+    <DCCReference Include="FormTextInput.pas">
+      <Form>fmTextInput</Form>
+    </DCCReference>
+    <DCCReference Include="GraphicsResourceForm.pas">
+      <Form>fmGraphicsResource</Form>
+    </DCCReference>
+    <DCCReference Include="GroupResourceForm.pas">
+      <Form>fmGroupResource</Form>
+    </DCCReference>
+    <DCCReference Include="HelpContext.pas" />
+    <DCCReference Include="IconCursorGraphicsResourceForm.pas">
+      <Form>fmIconCursorGraphicsResource</Form>
+    </DCCReference>
+    <DCCReference Include="IconGraphicsResourceForm.pas">
+      <Form>fmIconGraphicsResource</Form>
+    </DCCReference>
+    <DCCReference Include="MainForm.pas">
+      <Form>fmMain</Form>
+    </DCCReference>
+    <DCCReference Include="MenuResourceForm.pas">
+      <Form>fmMenuResource</Form>
+    </DCCReference>
+    <DCCReference Include="PackagesResourceForm.pas">
+      <Form>fmPackagesResource</Form>
+    </DCCReference>
+    <DCCReference Include="PropertiesForm.pas">
+      <Form>fmProperties</Form>
+    </DCCReference>
+    <DCCReference Include="PropertyBaseForm.pas">
+      <Form>fmPropertyBase</Form>
+    </DCCReference>
+    <DCCReference Include="PropertyPageForm.pas">
+      <Form>fmPropertyPage</Form>
+    </DCCReference>
+    <DCCReference Include="PropertyPageProgramSettings.pas">
+      <Form>fmPropertyPageProgramSettings</Form>
+    </DCCReference>
+    <DCCReference Include="PropertyPageRCSettings.pas">
+      <Form>fmPropertyPageRCSettings</Form>
+    </DCCReference>
+    <DCCReference Include="RawResourceForm.pas">
+      <Form>fmRawResource</Form>
+    </DCCReference>
+    <DCCReference Include="ResourceForm.pas">
+      <Form>fmResource</Form>
+    </DCCReference>
+    <DCCReference Include="ResourceObjectForm.pas">
+      <Form>fmResourceObject</Form>
+    </DCCReference>
+    <DCCReference Include="ResourcePropertiesDialog.pas">
+      <Form>dlgResourceProperties</Form>
+    </DCCReference>
+    <DCCReference Include="TextResourceForm.pas">
+      <Form>fmTextResource</Form>
+    </DCCReference>
+    <DCCReference Include="unitCREdProperties.pas" />
+    <DCCReference Include="unitIncludePathPackages.pas" />
+    <DCCReference Include="unitIncludePaths.pas" />
+    <DCCReference Include="VersionResourceForm.pas">
+      <Form>fmVersionResource</Form>
+    </DCCReference>
+    <DCCReference Include="XPManifestResourceForm.pas">
+      <Form>fmXPManifestResource</Form>
+    </DCCReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Borland.Delphi.Targets" />
+</Project>
