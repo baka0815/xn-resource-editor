@@ -1,0 +1,59 @@
+package ResourceUtils;
+
+{$R *.res}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO ON}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO ON}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DESCRIPTION 'Resource Utility Classes'}
+{$LIBSUFFIX '100'}
+{$RUNONLY}
+{$IMPLICITBUILD OFF}
+
+requires
+  rtl,
+  ImageTypes,
+  vcl,
+  vcljpg,
+  LowLevel;
+
+contains
+  unitNTModule in '..\..\Source\unitNTModule.pas',
+  unitPEFile in '..\..\Source\unitPEFile.pas',
+  unitResourceAccelerator in '..\..\Source\unitResourceAccelerator.pas',
+  unitResourceDetails in '..\..\Source\unitResourceDetails.pas',
+  unitResourceDialogs in '..\..\Source\unitResourceDialogs.pas',
+  unitResourceExaminer in '..\..\Source\unitResourceExaminer.pas',
+  unitResourceGIF in '..\..\Source\unitResourceGIF.pas',
+  unitResourceGraphics in '..\..\Source\unitResourceGraphics.pas',
+  unitResourceHTML in '..\..\Source\unitResourceHTML.pas',
+  unitResourceJPEG in '..\..\Source\unitResourceJPEG.pas',
+  unitResourceMenus in '..\..\Source\unitResourceMenus.pas',
+  unitResourceMessages in '..\..\Source\unitResourceMessages.pas',
+  unitResourcePNG in '..\..\Source\unitResourcePNG.pas',
+  unitResourceRCData in '..\..\Source\unitResourceRCData.pas',
+  unitResourceToolbar in '..\..\Source\unitResourceToolbar.pas',
+  unitResourceVersionInfo in '..\..\Source\unitResourceVersionInfo.pas',
+  unitResourceXPManifests in '..\..\Source\unitResourceXPManifests.pas',
+  DialogConsts in '..\..\Source\DialogConsts.pas',
+  unitResFile in '..\..\Source\unitResFile.pas',
+  unitRCFile in '..\..\Source\unitRCFile.pas';
+
+end.
