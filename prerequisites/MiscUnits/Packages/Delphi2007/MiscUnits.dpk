@@ -1,0 +1,72 @@
+package MiscUnits;
+
+{$R *.res}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO OFF}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS OFF}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO OFF}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DESCRIPTION 'Colin Wilson - Miscellaneous Components'}
+{$LIBSUFFIX '110'}
+{$IMPLICITBUILD OFF}
+{$DEFINE RELEASE}
+
+requires
+  rtl,
+  vclie,
+  vcl,
+  LowLevel,
+  ImageTypes;
+
+contains
+  MiscUnitsReg in '..\..\Source\MiscUnitsReg.pas',
+  cmpFileCopier in '..\..\Source\cmpFileCopier.pas',
+  cmpSplitterPanel in '..\..\Source\cmpSplitterPanel.pas',
+  cmpTextDisplay in '..\..\Source\cmpTextDisplay.pas',
+  cmpUCtrls in '..\..\Source\cmpUCtrls.pas',
+  cmpCWSpellChecker in '..\..\Source\cmpCWSpellChecker.pas',
+  cmpPersistentOptions in '..\..\Source\cmpPersistentOptions.pas',
+  cmpTexturedPanel in '..\..\Source\cmpTexturedPanel.pas',
+  cmpColorSelector in '..\..\Source\cmpColorSelector.pas',
+  cmpHexDump in '..\..\Source\cmpHexDump.pas',
+  cmpSizingPageControl in '..\..\Source\cmpSizingPageControl.pas',
+  cmpSpellChecker in '..\..\Source\cmpSpellChecker.pas',
+  SpellCheckerForm in '..\..\Source\SpellCheckerForm.pas',
+  cmpThemedScrollBox in '..\..\Source\cmpThemedScrollBox.pas',
+  cmpCWRichEdit in '..\..\Source\cmpCWRichEdit.pas',
+  cmpNewsRichEdit in '..\..\Source\cmpNewsRichEdit.pas',
+  cmpRuler in '..\..\Source\cmpRuler.pas',
+  cmpMessageDisplay in '..\..\Source\cmpMessageDisplay.pas',
+  cmpNTAboutBox in '..\..\Source\cmpNTAboutBox.pas',
+  cmpRunOnce in '..\..\Source\cmpRunOnce.pas',
+  cmpStandardSystemMenu in '..\..\Source\cmpStandardSystemMenu.pas',
+  cmpTrayIcon in '..\..\Source\cmpTrayIcon.pas',
+  cmpExSplitter in '..\..\Source\cmpExSplitter.pas',
+  cmpHyperlinkButton in '..\..\Source\cmpHyperlinkButton.pas',
+  cmpExWebBrowser in '..\..\Source\cmpExWebBrowser.pas',
+  cmpFakeCombobox in '..\..\Source\cmpFakeCombobox.pas',
+  cmpMRUList in '..\..\Source\cmpMRUList.pas',
+  cmpPersistentPosition in '..\..\Source\cmpPersistentPosition.pas',
+  cmpPropertyListBox in '..\..\Source\cmpPropertyListBox.pas',
+  unitHTMLStringsDisplayObject in '..\..\Source\unitHTMLStringsDisplayObject.pas',
+  unitNewsStringsDisplayObject in '..\..\Source\unitNewsStringsDisplayObject.pas',
+  unitHTMLHelpViewer in '..\..\Source\unitHTMLHelpViewer.pas',
+  cmpSuDoku in '..\..\Source\cmpSuDoku.pas';
+
+end.
