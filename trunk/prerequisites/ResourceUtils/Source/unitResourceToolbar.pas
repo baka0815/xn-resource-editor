@@ -9,8 +9,8 @@ const
 
 type
 TToolbarResourceDetails = class (TResourceDetails)
-  private
-    fHelpID : Integer;                    // Extended menu's help ID
+//  private
+//    fHelpID : Integer;                    // Extended menu's help ID
   protected
     constructor Create (AParent : TResourceModule; ALanguage : Integer; const AName, AType : WideString; ASize : Integer; AData : pointer); override;
 
