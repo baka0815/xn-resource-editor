@@ -27,7 +27,7 @@ type
     procedure InitNew; override;
     class function SupportsData (Size : Integer; data : Pointer) : Boolean; override;
   public
-    class function GetBaseType : string; override;
+    class function GetBaseType : WideString; override;
     procedure GetImage (picture : TPicture); override;
     procedure SetImage (image : TPicture); override;
   end;
@@ -97,7 +97,7 @@ end;
 
 { TJPegResourceDetails }
 
-class function TJPegResourceDetails.GetBaseType: string;
+class function TJPegResourceDetails.GetBaseType: WideString;
 begin
   Result := 'JPEG'
 end;

@@ -7,7 +7,7 @@ uses Windows, Classes, SysUtils, Contnrs, unitResourceDetails, AxCtrls;
 type
 TXPManifestResourceDetails = class (TAnsiResourceDetails)
 public
-  class function GetBaseType : string; override;
+  class function GetBaseType : WideString; override;
   procedure InitNew; override;
 end;
 
@@ -45,7 +45,7 @@ const
 '</assembly>';
 
 
-class function TXPManifestResourceDetails.GetBaseType: string;
+class function TXPManifestResourceDetails.GetBaseType: WideString;
 begin
   result := IntToStr (Integer (RT_XPMANIFEST));
 end;

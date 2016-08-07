@@ -48,7 +48,7 @@ type
     procedure InternalSetImage (s : TStream; image : TPicture);
 
   public
-    class function GetBaseType : string; override;
+    class function GetBaseType : WideString; override;
     procedure GetImage (picture : TPicture); override;
     procedure SetImage (image : TPicture); override;
     procedure LoadImage (const FileName : string);
@@ -66,7 +66,7 @@ type
     class function SupportsData (Size : Integer; data : Pointer) : Boolean; override;
     procedure InitNew; override;
   public
-    class function GetBaseType : string; override;
+    class function GetBaseType : WideString; override;
     procedure GetImage (picture : TPicture); override;
     procedure SetImage (image : TPicture); override;
   end;
@@ -99,7 +99,7 @@ type
 
   TIconGroupResourceDetails = class (TIconCursorGroupResourceDetails)
   public
-    class function GetBaseType : string; override;
+    class function GetBaseType : WideString; override;
   end;
 
 //------------------------------------------------------------------------
@@ -107,7 +107,7 @@ type
 
   TCursorGroupResourceDetails = class (TIconCursorGroupResourceDetails)
   public
-    class function GetBaseType : string; override;
+    class function GetBaseType : WideString; override;
   end;
 
 //------------------------------------------------------------------------
@@ -134,7 +134,7 @@ type
 
   TIconResourceDetails = class (TIconCursorResourceDetails)
   public
-    class function GetBaseType : string; override;
+    class function GetBaseType : WideString; override;
   end;
 
 //------------------------------------------------------------------------
@@ -143,7 +143,7 @@ type
   TCursorResourceDetails = class (TIconCursorResourceDetails)
   protected
   public
-    class function GetBaseType : string; override;
+    class function GetBaseType : WideString; override;
   end;
 
 const
@@ -180,7 +180,7 @@ resourcestring
 (*----------------------------------------------------------------------*
  | TBitmapResourceDetails.GetBaseType                                   |
  *----------------------------------------------------------------------*)
-class function TBitmapResourceDetails.GetBaseType: string;
+class function TBitmapResourceDetails.GetBaseType: WideString;
 begin
   result := IntToStr (Integer (RT_BITMAP));
 end;
@@ -400,7 +400,7 @@ end;
 (*----------------------------------------------------------------------*
  | TIconGroupResourceDetails.GetBaseType                                |
  *----------------------------------------------------------------------*)
-class function TIconGroupResourceDetails.GetBaseType: string;
+class function TIconGroupResourceDetails.GetBaseType: WideString;
 begin
   result := IntToStr (Integer (RT_GROUP_ICON));
 end;
@@ -410,7 +410,7 @@ end;
 (*----------------------------------------------------------------------*
  | TCursorGroupResourceDetails.GetBaseType                              |
  *----------------------------------------------------------------------*)
-class function TCursorGroupResourceDetails.GetBaseType: string;
+class function TCursorGroupResourceDetails.GetBaseType: WideString;
 begin
   result := IntToStr (Integer (RT_GROUP_CURSOR));
 end;
@@ -420,7 +420,7 @@ end;
 (*----------------------------------------------------------------------*
  | TIconResourceDetails.GetBaseType                                     |
  *----------------------------------------------------------------------*)
-class function TIconResourceDetails.GetBaseType: string;
+class function TIconResourceDetails.GetBaseType: WideString;
 begin
   result := IntToStr (Integer (RT_ICON));
 end;
@@ -430,7 +430,7 @@ end;
 (*----------------------------------------------------------------------*
  | TCursorResourceDetails.GetBaseType                                   |
  *----------------------------------------------------------------------*)
-class function TCursorResourceDetails.GetBaseType: string;
+class function TCursorResourceDetails.GetBaseType: WideString;
 begin
   result := IntToStr (Integer (RT_CURSOR));
 end;
@@ -1022,7 +1022,7 @@ end;
 
 { TDIBResourceDetails }
 
-class function TDIBResourceDetails.GetBaseType: string;
+class function TDIBResourceDetails.GetBaseType: WideString;
 begin
   Result := 'DIB';
 end;

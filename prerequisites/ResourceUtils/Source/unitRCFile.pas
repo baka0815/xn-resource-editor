@@ -34,15 +34,15 @@ TRCModule = class (TResourceList)
 private
   fFileName : string;
   fIncludePath: string;
-    fDefines: string;
 
 public
   constructor Create;
+
   procedure SaveToStream (stream : TStream); override;
   procedure LoadFromFile (const FileName : string); override;
   procedure LoadFromStream (stream : TStream); override;
+
   property IncludePath : string read fIncludePath write fIncludePath;
-  property Defines : string read fDefines write fDefines;
 end;
 
 implementation
@@ -84,6 +84,7 @@ const
   kwPure            = 101;
   kwMoveable        = 102;
   kwPreload         = 103;
+  kwLoadOnCall      = 104;
 
   kwVirtkey         = 110;
   kwAscii           = 111;
@@ -221,7 +222,7 @@ type
   end;
 
 const
-  NoKeywords = 51;
+  NoKeywords = 52;
 
 var
   KeywordTable : array [0..NoKeywords - 1] of TkwRec = (
@@ -253,6 +254,7 @@ var
 
     // Obsolete resource memory modifiers
     (kw : 'DISCARDABLE';     id : kwDiscardable;     pr : Nil),
+    (kw : 'LOADONCALL';      id : kwLoadOnCall;      pr : Nil),
     (kw : 'MOVEABLE';        id : kwMoveable;        pr : Nil),
     (kw : 'PRELOAD';         id : kwPreload;         pr : Nil),
     (kw : 'PURE';            id : kwPure;            pr : Nil),
@@ -358,8 +360,8 @@ end;
  *----------------------------------------------------------------------*}
 constructor TRCModule.Create;
 begin
-  inherited Create;
-  fIncludePath := GetEnvironmentVariable ('INCLUDE');
+  inherited;
+  fIncludePath := GetEnvironmentVariable ('include');
 end;
 
 procedure TRCModule.LoadFromFile(const FileName: string);
@@ -379,9 +381,6 @@ end;
 procedure TRCModule.LoadFromStream(stream: TStream);
 var
   parser : TRCParser;
-  sl : TStringList;
-  i : Integer;
-
 begin
   parser := TRCParser.Create(stream, self);
   parser.PathName := ExtractFilePath (fFileName);
@@ -390,24 +389,7 @@ begin
   parser.AddIdentifier('RC_INVOKED', '');
   parser.AddIdentifier('_WIN32', '');
 
-  if Defines <> '' then
-  begin
-    sl := TStringList.Create;
-    try
-      sl.Delimiter := ';';
-      sl.QuoteChar := '"';
-      sl.DelimitedText := Defines;
-      sl.NameValueSeparator := '=';
-
-      for i := 0 to sl.Count - 1 do
-        parser.AddIdentifier(sl.Names [i], sl.ValueFromIndex [i]);
-    finally
-      sl.Free
-    end
-  end;
-
-  // MSVC include path.  Obviously this shoudn't be hardcoded!
-  parser.IncludePath := fIncludePath;
+  parser.IncludePath := IncludePath;
   parser.Parse;
   SortResources;
   ClearDirty
@@ -650,6 +632,9 @@ begin
     if KeyID = kwBegin then
     while NextExpression (v) do // First expression contains the virtual key
     begin
+      if KeyID = kwEnd then
+        break;
+      
       vk := 0;
       if vk <> 0 then;          // Get's rid of erroneous compiler warning
       if v.tp = vString then
@@ -1611,7 +1596,7 @@ end;
 
 procedure TRCParser.SkipYeOldeMemoryAttributes;
 begin
-  while not fEOF and (KeyID in [kwDiscardable, kwPure, kwMoveable, kwPreload]) do
+  while not fEOF and (KeyID in [kwDiscardable, kwPure, kwMoveable, kwPreload, kwLoadOnCall]) do
     fEOF := not GetToken
 end;
 

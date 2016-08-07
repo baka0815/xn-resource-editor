@@ -16,7 +16,7 @@ type
     procedure InitNew; override;
     class function SupportsData (Size : Integer; data : Pointer) : Boolean; override;
   public
-    class function GetBaseType : string; override;
+    class function GetBaseType : WideString; override;
   end;
 
 
@@ -24,7 +24,7 @@ implementation
 
 { THTMLResourceDetails }
 
-class function THTMLResourceDetails.GetBaseType: string;
+class function THTMLResourceDetails.GetBaseType: WideString;
 begin
   result := IntToStr (Integer (RT_HTML))
 end;

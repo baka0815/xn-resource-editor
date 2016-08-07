@@ -39,12 +39,12 @@ implementation
 procedure TResModule.ParseResource (header, data : PChar; dataSize : Integer);
 var
   p : PChar;
-  sName, sType : string;
+  sName, sType : WideString;
   res : TResourceDetails;
   language, memoryFlags : word;
   version, dataVersion, characteristics : DWORD;
 
-  function GetName : string;
+  function GetName : WideString;
   begin
     if PWord (p)^ = $ffff then
     begin
@@ -60,38 +60,43 @@ var
   end;
 
 begin
-  p := header;
-  Inc (p, 2 * sizeof (Integer));
-  sType := GetName;
-  sName := GetName;
+  try
+    p := header;
+    Inc (p, 2 * sizeof (Integer));
+    sType := GetName;
+    sName := GetName;
 
-  if (Integer (p) mod 4) <> 0 then
-    Inc (p, 4 - Integer (p) mod 4);
+    if (Integer (p) mod 4) <> 0 then
+      Inc (p, 4 - Integer (p) mod 4);
 
-  dataVersion := PDWORD (p)^;
-  Inc (p, sizeof (DWORD));
-  memoryFlags := PWORD (p)^;
-  Inc (p, sizeof (word));
-  language := PWORD (p)^;
-  Inc (p, sizeof (word));
-  version := PDWORD (p)^;
-  Inc (p, sizeof (DWORD));
-  characteristics := PDWORD (p)^;
-  Inc (p, sizeof (DWORD));
+    dataVersion := PDWORD (p)^;
+    Inc (p, sizeof (DWORD));
+    memoryFlags := PWORD (p)^;
+    Inc (p, sizeof (word));
+    language := PWORD (p)^;
+    Inc (p, sizeof (word));
+    version := PDWORD (p)^;
+    Inc (p, sizeof (DWORD));
+    characteristics := PDWORD (p)^;
+    Inc (p, sizeof (DWORD));
 
-  if (dataSize <> 0) or (sName <> '0') then
-  begin
-    res := TResourceDetails.CreateResourceDetails (self, language, sName, sType, dataSize, data);
-    res.Characteristics := characteristics;
-    res.Version := version;
-    res.MemoryFlags := memoryFlags;
-    res.DataVersion := dataVersion;
-    AddResource (res)
-  end
-  else       // NB!!!  32 bit .RES files start with a dummy '32-bit indicator'
-             // resource !!!  Is this documented?  I don't think so!
+    if (dataSize <> 0) or (sName <> '0') then
+    begin
+      res := TResourceDetails.CreateResourceDetails (self, language, sName, sType, dataSize, data);
+      res.Characteristics := characteristics;
+      res.Version := version;
+      res.MemoryFlags := memoryFlags;
+      res.DataVersion := dataVersion;
+      AddResource (res)
+    end
+    else       // NB!!!  32 bit .RES files start with a dummy '32-bit indicator'
+               // resource !!!  Is this documented?  I don't think so!
 
-    f16Bit := False;
+      f16Bit := False;
+  except
+    raise Exception.Create('The resource file is corrupt');
+
+  end;
 end;
 
 procedure TResModule.LoadFromStream(stream: TStream);

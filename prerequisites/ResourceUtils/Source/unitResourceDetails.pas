@@ -59,7 +59,7 @@ public
   procedure InsertResource (idx : Integer; details : TResourceDetails); virtual;
   function AddResource (details : TResourceDetails) : Integer; virtual;
   function IndexOfResource (details : TResourceDetails) : Integer; virtual; abstract;
-  function GetUniqueResourceName (const tp : string) : string;
+  function GetUniqueResourceName (const tp : WideString) : WideString;
 
   procedure SaveToStream (stream : TStream); virtual;
   procedure LoadFromStream (stream : TStream); virtual;
@@ -68,7 +68,7 @@ public
   procedure LoadFromFile (const FileName : string); virtual;
   procedure SortResources; virtual;
 
-  function FindResource (const tp, Name : string; ALanguage : Integer) : TResourceDetails;
+  function FindResource (const tp, Name : WideString; ALanguage : Integer) : TResourceDetails;
 
   property ResourceCount : Integer read GetResourceCount;
   property ResourceDetails [idx : Integer] : TResourceDetails read GetResourceDetails;
@@ -87,27 +87,28 @@ private
   fData : TMemoryStream;
   fCodePage : Integer;
   fResourceLanguage: LCID;
-  fResourceName: string;
-  fResourceType: string;
+  fResourceName: WideString;
+  fResourceType: WideString;
 
   fMemoryFlags : word;                    // Resource memory flags
   fDataVersion, fVersion : DWORD;         // Resource header version info
   fCharacteristics : DWORD;
   fDirty : Boolean;
   fTag: Integer;
+    procedure SetResourceType(const Value: WideString);
                                          // Resource header characteristics
 
 protected
-  constructor Create (AParent : TResourceModule; ALanguage : Integer; const AName, AType : string; ASize : Integer; AData : pointer); virtual;
+  constructor Create (AParent : TResourceModule; ALanguage : Integer; const AName, AType : WideString; ASize : Integer; AData : pointer); virtual;
   procedure InitNew; virtual;
-  procedure SetResourceName(const Value: string); virtual;
+  procedure SetResourceName(const Value: WideString); virtual;
   class function SupportsRCData (const AName : string; Size : Integer; data : Pointer) : Boolean; virtual;
   class function SupportsData (Size : Integer; data : Pointer) : Boolean; virtual;
 public
-  class function CreateResourceDetails (AParent : TResourceModule; ALanguage : Integer; const AName, AType : string; ASize : Integer; AData : pointer) : TResourceDetails;
-  class function GetBaseType : string; virtual;
+  class function CreateResourceDetails (AParent : TResourceModule; ALanguage : Integer; const AName, AType : WideString; ASize : Integer; AData : pointer) : TResourceDetails;
+  class function GetBaseType : WideString; virtual;
 
-  constructor CreateNew (AParent : TResourceModule; ALanguage : Integer; const AName : string); virtual;
+  constructor CreateNew (AParent : TResourceModule; ALanguage : Integer; const AName : WideString); virtual;
   destructor Destroy; override;
   procedure BeforeDelete; virtual;
 
@@ -115,8 +116,8 @@ public
 
   property Parent : TResourceModule read fParent;
   property Data : TMemoryStream read fData;
-  property ResourceName : string read fResourceName write SetResourceName;
-  property ResourceType : string read fResourceType;
+  property ResourceName : WideString read fResourceName write SetResourceName;
+  property ResourceType : WideString read fResourceType write SetResourceType;
   property ResourceLanguage : LCID read fResourceLanguage write fResourceLanguage;
 
   property CodePage : Integer read fCodePage write fCodePage;
@@ -168,8 +169,11 @@ end;
 procedure RegisterResourceDetails (resourceClass : TResourceDetailsClass);
 procedure UnRegisterResourceDetails (resourceClass : TResourceDetailsClass);
 function ResourceWideCharToStr(var wstr : PWideChar; codePage : Integer) : string;
+function ResourceWideCharToWideStr(var wstr : PWideChar) : WideString;
 procedure ResourceStrToWideChar (const s : string; var p : PWideChar; codePage : Integer);
+procedure ResourceWideStrToWideChar (const s : WideString; var p : PWideChar);
 function ResourceNameToInt (const s : string) : Integer;
+function WideResourceNameToInt (const s : WideString) : Integer;
 function CompareDetails (p1, p2 : Pointer) : Integer;
 
 implementation
@@ -229,6 +233,7 @@ end;
  |                                                                            |
  | Parameters:                                                                |
  |   WStr : PWChar             The characters                                 |
+ |   codePage : Integer        Code page to use in conversion                 |
  *----------------------------------------------------------------------------*)
 function ResourceWideCharToStr(var wstr : PWideChar; codePage : Integer) : string;
 var
@@ -243,6 +248,25 @@ begin
 end;
 
 (*----------------------------------------------------------------------------*
+ | procedure ResourceWideCharToWideStr ()                                     |
+ |                                                                            |
+ | Convert Pascal-style WideChar array to a WideString                        |
+ |                                                                            |
+ | Parameters:                                                                |
+ |   WStr : PWChar             The characters                                 |
+ *----------------------------------------------------------------------------*)
+function ResourceWideCharToWideStr (var wstr : PWideChar) : WideString;
+var
+  len : word;
+begin
+  len := word (wstr^);
+  SetLength (result, len);
+  Inc (wstr);
+  Move (wstr^, PWideChar (result)^, len * sizeof (WideChar));
+  Inc (wstr, len);
+end;
+
+(*----------------------------------------------------------------------------*
  | procedure ResourceStrToWideChar ()                                         |
  |                                                                            |
  | Convert a string to a Pascal style Wide char array                         |
@@ -251,6 +275,7 @@ end;
  |   s : string                The string                                     |
  |   var p : PWideChar         [in]  Points to the start of the receiving buf |
  |                             [out] Points after the characters.             |
+ |   codePage : Integer        Code page to use in conversion                 |
  *----------------------------------------------------------------------------*)
 procedure ResourceStrToWideChar (const s : string; var p : PWideChar; codePage : Integer);
 var
@@ -269,6 +294,27 @@ begin
   finally
     FreeMem (buffer)
   end
+end;
+
+(*----------------------------------------------------------------------------*
+ | procedure ResourceWideStrToWideChar ()                                     |
+ |                                                                            |
+ | Convert a wide string to a Pascal style Wide char array                    |
+ |                                                                            |
+ | Parameters:                                                                |
+ |   s : string                The string                                     |
+ |   var p : PWideChar         [in]  Points to the start of the receiving buf |
+ |                             [out] Points after the characters.             |
+ *----------------------------------------------------------------------------*)
+procedure ResourceWideStrToWideChar (const s : WideString; var p : PWideChar);
+var
+  len : word;
+begin
+  len := Length (s);
+  p^ := WideChar (len);
+  Inc (p);
+  Move (PWideChar (s)^, p^, len * sizeof (WideChar));
+  Inc (p, len)
 end;
 
 (*----------------------------------------------------------------------*
@@ -294,6 +340,11 @@ begin
     Result := StrToInt (s)
   else
     Result := -1
+end;
+
+function WideResourceNameToInt (const s : WideString) : Integer;
+begin
+  result := ResourceNameToInt (s);
 end;
 
 (*----------------------------------------------------------------------*
@@ -394,7 +445,7 @@ end;
  |                                                                      |
  | Raw - protected - constructor for resource details.                  |
  *----------------------------------------------------------------------*)
-constructor TResourceDetails.Create(AParent: TResourceModule; ALanguage: Integer; const AName, AType: string; ASize: Integer;
+constructor TResourceDetails.Create(AParent: TResourceModule; ALanguage: Integer; const AName, AType: WideString; ASize: Integer;
   AData: pointer);
 begin
   fParent := AParent;
@@ -415,7 +466,7 @@ end;
  | Constructor to be used when adding new resources to a module.        |
  *----------------------------------------------------------------------*)
 constructor TResourceDetails.CreateNew(AParent: TResourceModule;
-  ALanguage: Integer; const aName : string);
+  ALanguage: Integer; const aName : WideString);
 begin
   fParent := AParent;
   fResourceLanguage := ALanguage;
@@ -437,7 +488,7 @@ end;
  *----------------------------------------------------------------------*)
 class function TResourceDetails.CreateResourceDetails(
   AParent: TResourceModule; ALanguage: Integer; const AName,
-  AType: string; ASize: Integer; AData: pointer): TResourceDetails;
+  AType: WideString; ASize: Integer; AData: pointer): TResourceDetails;
 var
   i : Integer;
 begin
@@ -497,7 +548,7 @@ end;
  | Return the base type for the resource details.  This is overridden   |
  | in derived classes.                                                  |
  *----------------------------------------------------------------------*)
-class function TResourceDetails.GetBaseType: string;
+class function TResourceDetails.GetBaseType: WideString;
 begin
   Result := '0';
 end;
@@ -517,10 +568,22 @@ end;
  |                                                                      |
  | Set the resource name.                                               |
  *----------------------------------------------------------------------*)
-procedure TResourceDetails.SetResourceName(const Value: string);
+procedure TResourceDetails.SetResourceName(const Value: WideString);
 begin
-  fResourceName := Value;
-  fDirty := True
+  if fResourceName <> Value then
+  begin
+    fResourceName := Value;
+    fDirty := True
+  end
+end;
+
+procedure TResourceDetails.SetResourceType(const Value: WideString);
+begin
+  if fResourceType <> Value then
+  begin
+    fResourceType := Value;
+    fDirty := True
+  end
 end;
 
 (*----------------------------------------------------------------------*
@@ -586,7 +649,7 @@ end;
  | Find a resource with a given type/name                               |
  *----------------------------------------------------------------------*)
 function TResourceModule.FindResource(const tp,
-  Name: string; ALanguage : Integer): TResourceDetails;
+  Name: WideString; ALanguage : Integer): TResourceDetails;
 var
   i : Integer;
 begin
@@ -636,7 +699,7 @@ end;
  | Generate a unique resource name for a given type.  Names start at    |
  | 1 (though string lists downgrade that to '0')                        |
  *----------------------------------------------------------------------*)
-function TResourceModule.GetUniqueResourceName(const tp: string): string;
+function TResourceModule.GetUniqueResourceName(const tp: WideString): WideString;
 var
   i : Integer;
   n, n1 : Integer;
