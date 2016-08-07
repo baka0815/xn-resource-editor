@@ -1,4 +1,7 @@
-NOTE: Currently the sources are only compilable in Delphi 2006
+NOTE: 
+Currently the sources are only compilable in Delphi 2006 or Delphi 2007
+
+This is how to compile them for Delphi 2006:
 
 To compile XNResourceEditor you need to install the prerequisites first:
 * TNTComponents:
