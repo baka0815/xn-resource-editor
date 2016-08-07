@@ -1,0 +1,44 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{c6bc0279-b22f-4b2c-a818-50b926837da4}</ProjectGuid>
+  </PropertyGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Projects Include="VirtualTreesExtensions.dproj" />
+    <Projects Include="VirtualTreesExtensionsD.dproj" />
+  </ItemGroup>
+  <ProjectExtensions>
+    <Borland.Personality>Default.Personality</Borland.Personality>
+    <Borland.ProjectType />
+    <BorlandProject>
+  <BorlandProject xmlns=""> <Default.Personality> </Default.Personality> </BorlandProject></BorlandProject>
+  </ProjectExtensions>
+  <Target Name="VirtualTreesExtensions">
+    <MSBuild Projects="VirtualTreesExtensions.dproj" Targets="" />
+  </Target>
+  <Target Name="VirtualTreesExtensions:Clean">
+    <MSBuild Projects="VirtualTreesExtensions.dproj" Targets="Clean" />
+  </Target>
+  <Target Name="VirtualTreesExtensions:Make">
+    <MSBuild Projects="VirtualTreesExtensions.dproj" Targets="Make" />
+  </Target>
+  <Target Name="VirtualTreesExtensionsD">
+    <MSBuild Projects="VirtualTreesExtensionsD.dproj" Targets="" />
+  </Target>
+  <Target Name="VirtualTreesExtensionsD:Clean">
+    <MSBuild Projects="VirtualTreesExtensionsD.dproj" Targets="Clean" />
+  </Target>
+  <Target Name="VirtualTreesExtensionsD:Make">
+    <MSBuild Projects="VirtualTreesExtensionsD.dproj" Targets="Make" />
+  </Target>
+  <Target Name="Build">
+    <CallTarget Targets="VirtualTreesExtensions;VirtualTreesExtensionsD" />
+  </Target>
+  <Target Name="Clean">
+    <CallTarget Targets="VirtualTreesExtensions:Clean;VirtualTreesExtensionsD:Clean" />
+  </Target>
+  <Target Name="Make">
+    <CallTarget Targets="VirtualTreesExtensions:Make;VirtualTreesExtensionsD:Make" />
+  </Target>
+  <Import Condition="Exists('$(MSBuildBinPath)\Borland.Group.Targets')" Project="$(MSBuildBinPath)\Borland.Group.Targets" />
+</Project>
