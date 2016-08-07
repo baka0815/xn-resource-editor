@@ -15,7 +15,7 @@ type
     function GetWidth: Integer; override;
     class function SupportsData (Size : Integer; data : Pointer) : Boolean; override;
   public
-    class function GetBaseType : string; override;
+    class function GetBaseType : WideString; override;
     procedure GetImage (picture : TPicture); override;
   end;
 
@@ -24,7 +24,7 @@ implementation
 
 { TPngResourceDetails }
 
-class function TPngResourceDetails.GetBaseType: string;
+class function TPngResourceDetails.GetBaseType: WideString;
 begin
   Result := 'PNG';
 end;

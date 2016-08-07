@@ -20,8 +20,8 @@ private
   function GetAccelerator(idx: Integer): TAccelerator;
   function GetAccelPointer (idx : Integer) : PAccelerator;
 public
-  constructor Create (AParent : TResourceModule; ALanguage : Integer; const AName, AType : string; ASize : Integer; AData : pointer); override;
-  class function GetBaseType : string; override;
+  constructor Create (AParent : TResourceModule; ALanguage : Integer; const AName, AType : WideString; ASize : Integer; AData : pointer); override;
+  class function GetBaseType : WideString; override;
 
   procedure InitNew; override;
   function Add (flags, code, id : Integer) : Integer;
@@ -58,7 +58,7 @@ begin
 end;
 
 constructor TAcceleratorResourceDetails.Create(AParent: TResourceModule;
-  ALanguage: Integer; const AName, AType: string; ASize: Integer;
+  ALanguage: Integer; const AName, AType: WideString; ASize: Integer;
   AData: pointer);
 begin
   inherited Create (AParent, ALanguage, AName, AType, ASize, AData);
@@ -107,7 +107,7 @@ begin
     raise ERangeError.Create('Index out of bounds');
 end;
 
-class function TAcceleratorResourceDetails.GetBaseType: string;
+class function TAcceleratorResourceDetails.GetBaseType: WideString;
 begin
   result := IntToStr (Integer (RT_ACCELERATOR));
 end;

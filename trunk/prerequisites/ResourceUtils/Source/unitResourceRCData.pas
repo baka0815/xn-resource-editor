@@ -7,27 +7,27 @@ uses Windows, Classes, SysUtils, Contnrs, unitResourceDetails;
 type
 TRCDataResourceDetails = class (TResourceDetails)
 public
-  class function GetBaseType : string; override;
+  class function GetBaseType : WideString; override;
 end;
 
 TRCDataDescriptionResourceDetails = class (TRCDataResourceDetails)
 private
-  function GetDescription: string;
-  procedure SetDescription(const Value: string);
+  function GetDescription: WideString;
+  procedure SetDescription(const Value: WideString);
 protected
   class function SupportsRCData (const AName : string; Size : Integer; data : Pointer) : Boolean; override;
 public
-  property Description : string read GetDescription write SetDescription;
+  property Description : WideString read GetDescription write SetDescription;
 end;
 
 TRCDataFormResourceDetails = class (TRCDataResourceDetails)
   private
-  function GetText: string;
-  procedure SetText(const Value: string);
+  function GetText: WideString;
+  procedure SetText(const Value: WideString);
 protected
   class function SupportsRCData (const AName : string; Size : Integer; data : Pointer) : Boolean; override;
 public
-  property Text : string read GetText write SetText;
+  property Text : WideString read GetText write SetText;
 end;
 
 TPackageEnvironment = (pePreV4, peUndefine, peBCB, peDelphi);
@@ -102,26 +102,23 @@ type
 
 { TRCDataResourceDetails }
 
-class function TRCDataResourceDetails.GetBaseType: string;
+class function TRCDataResourceDetails.GetBaseType: WideString;
 begin
   result := IntToStr (Integer (RT_RCDATA));
 end;
 
 { TRCDataDescriptionResourceDetails }
 
-function TRCDataDescriptionResourceDetails.GetDescription: string;
+function TRCDataDescriptionResourceDetails.GetDescription: WideString;
 begin
   Result := PWideChar (data.Memory);
 end;
 
 procedure TRCDataDescriptionResourceDetails.SetDescription(
-  const Value: string);
-var
-  ws : WideString;
+  const Value: WideString);
 begin
   data.Size := (Length (Value) + 1) * SizeOf (WideChar);
-  ws := Value;
-  Move (ws [1], data.memory^, (Length (Value) + 1) * SizeOf (WideChar))
+  Move (Value [1], data.memory^, (Length (Value) + 1) * SizeOf (WideChar))
 end;
 
 class function TRCDataDescriptionResourceDetails.SupportsRCData(
@@ -262,7 +259,7 @@ end;
 
 { TRCDataFormResourceDetails }
 
-function TRCDataFormResourceDetails.GetText: string;
+function TRCDataFormResourceDetails.GetText: WideString;
 var
   s : TStringStream;
 begin
@@ -270,18 +267,18 @@ begin
   try
     data.Seek (0, soFromBeginning);
     ObjectBinaryToText (data, s);
-    Result := s.DataString
+    Result := UTF8Decode (s.DataString);
   finally
     s.Free
   end
 end;
 
-procedure TRCDataFormResourceDetails.SetText(const Value: string);
+procedure TRCDataFormResourceDetails.SetText(const Value: WideString);
 var
   s : TStringStream;
   m : TMemoryStream;
 begin
-  s := TStringStream.Create (Value);
+  s := TStringStream.Create (Utf8Encode (Value));
   try
     m := TMemoryStream.Create;
     try

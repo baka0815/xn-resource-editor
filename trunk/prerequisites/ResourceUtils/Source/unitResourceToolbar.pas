@@ -12,12 +12,12 @@ TToolbarResourceDetails = class (TResourceDetails)
   private
     fHelpID : Integer;                    // Extended menu's help ID
   protected
-    constructor Create (AParent : TResourceModule; ALanguage : Integer; const AName, AType : string; ASize : Integer; AData : pointer); override;
+    constructor Create (AParent : TResourceModule; ALanguage : Integer; const AName, AType : WideString; ASize : Integer; AData : pointer); override;
 
   public
     destructor Destroy; override;
 
-    class function GetBaseType : string; override;
+    class function GetBaseType : WideString; override;
     procedure ChangeData (newData : TMemoryStream); override;
 
     procedure InitNew; override;
@@ -43,7 +43,7 @@ begin
 end;
 
 constructor TToolbarResourceDetails.Create(AParent: TResourceModule;
-  ALanguage: Integer; const AName, AType: string; ASize: Integer;
+  ALanguage: Integer; const AName, AType: WideString; ASize: Integer;
   AData: pointer);
 begin
   inherited Create (AParent, ALanguage, AName, AType, ASize, AData);
@@ -54,7 +54,7 @@ begin
   inherited;
 end;
 
-class function TToolbarResourceDetails.GetBaseType: string;
+class function TToolbarResourceDetails.GetBaseType: WideString;
 begin
   result := IntToStr (Integer (RT_TOOLBAR));
 end;

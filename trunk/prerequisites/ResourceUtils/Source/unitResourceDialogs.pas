@@ -7,7 +7,7 @@ uses Windows, Classes, SysUtils, unitResourceDetails, DialogConsts;
 type
 TDialogResourceDetails = class (TResourceDetails)
 public
-  class function GetBaseType : string; override;
+  class function GetBaseType : WideString; override;
   procedure InitNew; override;
 
   procedure BeginInit (x, y, cx, cy : Integer; Style, ExStyle : DWORD; menu, cls, title : TSzOrID; fontSize : DWORD; const faceName : string);
@@ -115,7 +115,7 @@ begin
   p^.cDlgItems := CtrlCount
 end;
 
-class function TDialogResourceDetails.GetBaseType: string;
+class function TDialogResourceDetails.GetBaseType: WideString;
 begin
   result := IntToStr (Integer (RT_DIALOG));
 end;

@@ -39,12 +39,12 @@ type
     procedure SetFileVersion(const Value: TULargeInteger);
     procedure SetProductVersion(const Value: TULargeInteger);
   protected
-    constructor Create (AParent : TResourceModule; ALanguage : Integer; const AName, AType : string; ASize : Integer; AData : pointer); override;
+    constructor Create (AParent : TResourceModule; ALanguage : Integer; const AName, AType : WideString; ASize : Integer; AData : pointer); override;
     procedure InitNew; override;
   public
-    constructor CreateNew (AParent : TResourceModule; ALanguage : Integer; const AName : string); override;
+    constructor CreateNew (AParent : TResourceModule; ALanguage : Integer; const AName : WideString); override;
     destructor Destroy; override;
-    class function GetBaseType : string; override;
+    class function GetBaseType : WideString; override;
     procedure ChangeData (newData : TMemoryStream); override;
     function SetKeyValue (const AKeyName, AValue : string) : Integer;
     procedure ChangeKey (const AOldKey, ANewKey : string);
@@ -100,7 +100,7 @@ begin
 end;
 
 constructor TVersionInfoResourceDetails.Create(AParent: TResourceModule;
-  ALanguage: Integer; const AName, AType: string; ASize: Integer;
+  ALanguage: Integer; const AName, AType: WideString; ASize: Integer;
   AData: pointer);
 begin
   fChildStrings := TObjectList.Create;
@@ -109,7 +109,7 @@ begin
 end;
 
 constructor TVersionInfoResourceDetails.CreateNew(AParent: TResourceModule;
-  ALanguage: Integer; const AName: string);
+  ALanguage: Integer; const AName: WideString);
 begin
   fChildStrings := TObjectList.Create;
   fTranslations := TList.Create;
@@ -253,7 +253,7 @@ begin { ExportToStream }
     raise Exception.Create ('Invalid version resource');
 end;
 
-class function TVersionInfoResourceDetails.GetBaseType: string;
+class function TVersionInfoResourceDetails.GetBaseType: WideString;
 begin
   result := IntToStr (Integer (RT_VERSION));
 end;

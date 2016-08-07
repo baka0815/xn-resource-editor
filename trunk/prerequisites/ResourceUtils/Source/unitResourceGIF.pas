@@ -16,7 +16,7 @@ type
     procedure InitNew; override;
     class function SupportsData (Size : Integer; data : Pointer) : Boolean; override;
   public
-    class function GetBaseType : string; override;
+    class function GetBaseType : WideString; override;
     procedure GetImage (picture : TPicture); override;
   end;
 
@@ -25,7 +25,7 @@ implementation
 
 { TGifResourceDetails }
 
-class function TGifResourceDetails.GetBaseType: string;
+class function TGifResourceDetails.GetBaseType: WideString;
 begin
   Result := 'GIF';
 end;
@@ -36,10 +36,13 @@ begin
 end;
 
 procedure TGifResourceDetails.GetImage(picture: TPicture);
+var
+  gif : TGIFImage;
 begin
-  picture.graphic := TGifImage.Create;
+  gif := TGifImage.Create;
+  picture.graphic := gif;
   data.Seek (0, soFromBeginning);
-  TGifImage (picture.graphic).LoadFromStream (data)
+  TGifImage (picture.graphic).LoadFromStream (data);
 end;
 
 function TGifResourceDetails.GetPixelFormat: TPixelFormat;
@@ -64,6 +67,7 @@ begin
     bmp.Width := 64;
     bmp.Height := 64;
     img.Assign(bmp);
+    img.Transparent := True;
     img.SaveToStream (data);
   finally
     img.Free;

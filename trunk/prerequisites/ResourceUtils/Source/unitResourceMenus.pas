@@ -9,12 +9,12 @@ TMenuResourceDetails = class (TResourceDetails)
   private
     fHelpID : Integer;                    // Extended menu's help ID
   protected
-    constructor Create (AParent : TResourceModule; ALanguage : Integer; const AName, AType : string; ASize : Integer; AData : pointer); override;
+    constructor Create (AParent : TResourceModule; ALanguage : Integer; const AName, AType : WideString; ASize : Integer; AData : pointer); override;
 
   public
     destructor Destroy; override;
 
-    class function GetBaseType : string; override;
+    class function GetBaseType : WideString; override;
     procedure ChangeData (newData : TMemoryStream); override;
 
     procedure InitNew; override;
@@ -28,13 +28,13 @@ type
   TMenuExTemplateHeader = packed record
     wVersion : word;
     wOffset : word;
-    dwHelpId : DWORD
+    dwHelpId : DWORD;
   end;
   PMenuExTemplateHeader = ^TMenuExTemplateHeader;
 
   TMenuHeader = packed record
     wVersion : word;
-    cbHeaderSize : word
+    cbHeaderSize : word;
   end;
   PMenuHeader = ^TMenuHeader;
 
@@ -53,7 +53,7 @@ begin
 end;
 
 constructor TMenuResourceDetails.Create(AParent: TResourceModule;
-  ALanguage: Integer; const AName, AType: string; ASize: Integer;
+  ALanguage: Integer; const AName, AType: WideString; ASize: Integer;
   AData: pointer);
 begin
   inherited Create (AParent, ALanguage, AName, AType, ASize, AData);
@@ -64,7 +64,7 @@ begin
   inherited;
 end;
 
-class function TMenuResourceDetails.GetBaseType: string;
+class function TMenuResourceDetails.GetBaseType: WideString;
 begin
   result := IntToStr (Integer (RT_MENU));
 end;
@@ -77,7 +77,7 @@ var
   procedure GetNormalItems (rootItem : TMenuItem);
   var
     flags, id : word;
-    caption : string;
+    caption : WideString;
     item : TMenuItem;
   begin
     repeat
@@ -105,7 +105,7 @@ var
           item.Tag := id
       end;
 
-      item.Caption := caption;
+      item.Caption := Utf8Encode (caption);
 
       if (flags and MF_GRAYED) <> 0 then
         item.Enabled := False;
@@ -124,7 +124,7 @@ var
     state : DWORD;
     uID : UINT;
     bResInfo : word;
-    caption : string;
+    caption : WideString;
     helpID : DWORD;
     item : TMenuItem;
 
@@ -160,7 +160,7 @@ var
 
       item := TMenuItem.Create (owner);
       item.Tag := uID;
-      item.Caption := caption;
+      item.Caption := UTF8Encode (caption);
       item.HelpContext := helpID;
 
       if (state and MFS_DISABLED) <> 0 then
@@ -272,7 +272,7 @@ var
     if rootItem.Caption = '-' then
       wCaption := ''
     else
-      wCaption := rootItem.caption;
+      wCaption := Utf8Decode (rootItem.caption);
 
     if wCaption = '' then
     begin
@@ -327,7 +327,7 @@ var
 
     if (tp and MFT_SEPARATOR) = 0 then
     begin
-      wCaption := rootItem.caption;
+      wCaption := Utf8Decode (rootItem.caption);
 
       if wCaption = '' then
       begin

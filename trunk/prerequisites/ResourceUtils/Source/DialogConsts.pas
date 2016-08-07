@@ -15,7 +15,7 @@ const
 type
   TSZOrID = record
     isID : Boolean;
-    sz : string;
+    sz : WideString;
     id : Integer;
   end;
 
@@ -62,7 +62,7 @@ type
 
 
 procedure WriteSzOrId (stream : TStream; const id : TSzOrId);
-function StringToSzOrID (const st : string) : TszOrID;
+function StringToSzOrID (const st : WideString) : TszOrID;
 procedure Pad (stream : TStream);
 
 implementation
@@ -87,7 +87,7 @@ begin
   end
 end;
 
-function StringToSzOrID (const st : string) : TszOrID;
+function StringToSzOrID (const st : WideString) : TszOrID;
 var
   i : Integer;
 begin
@@ -95,7 +95,7 @@ begin
   result.sz := st;
 
   for i := 1 to Length (st) do
-    if not (st [i] in ['0'..'9']) then
+    if not (char (st [i]) in ['0'..'9']) then
     begin
       result.isID := False;
       break
