@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+  <PersonalityInfo>
+    <Option>
+      <Option Name="Personality">Default.Personality</Option>
+      <Option Name="ProjectType"></Option>
+      <Option Name="Version">1.0</Option>
+      <Option Name="GUID">{F4A3FA6B-9C2F-49A3-B389-323D9AA2526D}</Option>
+    </Option>
+  </PersonalityInfo>
+  <Default.Personality>
+    
+    <Projects>
+      <Projects Name="TntUnicodeVcl100.bpl">TntUnicodeVcl.bdsproj</Projects>
+      <Projects Name="TntUnicodeVcl_Design100.bpl">TntUnicodeVcl_Design.bdsproj</Projects>
+      <Projects Name="Targets">TntUnicodeVcl100.bpl TntUnicodeVcl_Design100.bpl</Projects>
+    </Projects>
+    <Dependencies/>
+  </Default.Personality>
+</BorlandProject>
