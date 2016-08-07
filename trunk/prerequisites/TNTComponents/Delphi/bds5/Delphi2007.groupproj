@@ -1,0 +1,44 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{1e6da80e-7b6d-48d2-adad-360c2a040101}</ProjectGuid>
+  </PropertyGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Projects Include="TntUnicodeVcl.dproj" />
+    <Projects Include="TntUnicodeVcl_Design.dproj" />
+  </ItemGroup>
+  <ProjectExtensions>
+    <Borland.Personality>Default.Personality</Borland.Personality>
+    <Borland.ProjectType />
+    <BorlandProject>
+<BorlandProject xmlns=""><Default.Personality></Default.Personality></BorlandProject></BorlandProject>
+  </ProjectExtensions>
+  <Target Name="TntUnicodeVcl">
+    <MSBuild Projects="TntUnicodeVcl.dproj" Targets="" />
+  </Target>
+  <Target Name="TntUnicodeVcl:Clean">
+    <MSBuild Projects="TntUnicodeVcl.dproj" Targets="Clean" />
+  </Target>
+  <Target Name="TntUnicodeVcl:Make">
+    <MSBuild Projects="TntUnicodeVcl.dproj" Targets="Make" />
+  </Target>
+  <Target Name="TntUnicodeVcl_Design">
+    <MSBuild Projects="TntUnicodeVcl_Design.dproj" Targets="" />
+  </Target>
+  <Target Name="TntUnicodeVcl_Design:Clean">
+    <MSBuild Projects="TntUnicodeVcl_Design.dproj" Targets="Clean" />
+  </Target>
+  <Target Name="TntUnicodeVcl_Design:Make">
+    <MSBuild Projects="TntUnicodeVcl_Design.dproj" Targets="Make" />
+  </Target>
+  <Target Name="Build">
+    <CallTarget Targets="TntUnicodeVcl;TntUnicodeVcl_Design" />
+  </Target>
+  <Target Name="Clean">
+    <CallTarget Targets="TntUnicodeVcl:Clean;TntUnicodeVcl_Design:Clean" />
+  </Target>
+  <Target Name="Make">
+    <CallTarget Targets="TntUnicodeVcl:Make;TntUnicodeVcl_Design:Make" />
+  </Target>
+  <Import Condition="Exists('$(MSBuildBinPath)\Borland.Group.Targets')" Project="$(MSBuildBinPath)\Borland.Group.Targets" />
+</Project>
