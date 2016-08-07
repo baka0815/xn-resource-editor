@@ -21,3 +21,6 @@ To compile XNResourceEditor you need to install the prerequisites first:
 * ResourceUtils:
   * open .\prerequisites\ResourceUtils\Packages\BDS 2006\ResourceUtils.bdsproj
   * build the package
+* VirtualTreesExensions
+  * open .\prerequisites\d12componentpackages\Packages\Delphi2006
+  * build and install the package
