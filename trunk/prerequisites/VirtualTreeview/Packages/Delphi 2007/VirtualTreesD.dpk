@@ -5,7 +5,7 @@ package VirtualTreesD;
 {$ALIGN 8}
 {$ASSERTIONS ON}
 {$BOOLEVAL OFF}
-{$DEBUGINFO ON}
+{$DEBUGINFO OFF}
 {$EXTENDEDSYNTAX ON}
 {$IMPORTEDDATA ON}
 {$IOCHECKS ON}
@@ -24,20 +24,19 @@ package VirtualTreesD;
 {$MINENUMSIZE 1}
 {$IMAGEBASE $400000}
 {$DESCRIPTION 'Virtual Treeview design time package'}
+{$LIBSUFFIX '110'}
 {$DESIGNONLY}
-{$IMPLICITBUILD ON}
+{$IMPLICITBUILD OFF}
+{$DEFINE RELEASE}
 
 requires
   DesignIde,
   vcl,
-  rtl;
+  rtl,
+  VirtualTreesR;
 
 contains
-  VirtualTrees in '..\..\Source\VirtualTrees.pas',
-  VirtualTreesReg in '..\..\Design\VirtualTreesReg.pas',
-  VTHeaderPopup in '..\..\Source\VTHeaderPopup.pas',
-  VTAccessibilityFactory in '..\..\Source\VTAccessibilityFactory.pas',
-  VTAccessibility in '..\..\Source\VTAccessibility.pas';
+  VirtualTreesReg in '..\..\Design\VirtualTreesReg.pas';
 
 end.
 
