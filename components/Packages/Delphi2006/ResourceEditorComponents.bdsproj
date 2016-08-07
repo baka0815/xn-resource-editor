@@ -5,12 +5,12 @@
 			<Option Name="Personality">Delphi.Personality</Option>
 			<Option Name="ProjectType">VCLApplication</Option>
 			<Option Name="Version">1.0</Option>
-			<Option Name="GUID">{60941FC1-6D0A-44FD-9C94-DE4C1D9BBB48}</Option>
+			<Option Name="GUID">{CBFE726C-FE3C-45E3-A77E-FF64FD825E70}</Option>
 		</Option>
 	</PersonalityInfo>
 	<Delphi.Personality>
 		<Source>
-			<Source Name="MainSource">XNResourceEditor.dpr</Source>
+			<Source Name="MainSource">ResourceEditorComponents.dpk</Source>
 		</Source>
 		<FileVersion>
 			<FileVersion Name="Version">7.0</FileVersion>
@@ -18,7 +18,7 @@
 		<Compiler>
 			<Compiler Name="A">8</Compiler>
 			<Compiler Name="B">0</Compiler>
-			<Compiler Name="C">0</Compiler>
+			<Compiler Name="C">1</Compiler>
 			<Compiler Name="D">1</Compiler>
 			<Compiler Name="E">0</Compiler>
 			<Compiler Name="F">0</Compiler>
@@ -116,15 +116,15 @@
 			<Linker Name="MinStackSize">16384</Linker>
 			<Linker Name="MaxStackSize">1048576</Linker>
 			<Linker Name="ImageBase">4194304</Linker>
-			<Linker Name="ExeDescription"></Linker>
+			<Linker Name="ExeDescription">Colin Wilson - Resource Editor Components</Linker>
 		</Linker>
 		<Directories>
-			<Directories Name="OutputDir">..</Directories>
-			<Directories Name="UnitOutputDir">..\dcu</Directories>
+			<Directories Name="OutputDir"></Directories>
+			<Directories Name="UnitOutputDir">.\dcu</Directories>
 			<Directories Name="PackageDLLOutputDir"></Directories>
 			<Directories Name="PackageDCPOutputDir"></Directories>
-			<Directories Name="SearchPath">..\prerequisites\LowLevel\Source;..\prerequisites\ImageTypes\Source;..\prerequisites\MiscUnits\Source;..\prerequisites\ResourceUtils\Source;..\prerequisites\TNTComponents\Source;..\prerequisites\VirtualTreeview\Source;..\prerequisites\d12componentpackages\Source;..\components\source</Directories>
-			<Directories Name="Packages">vcl;vclx;dbrtl;Rave65VCL;bdertl;rtl;vcldb;adortl;dbxcds;dbexpress;vclib;ibxpress;xmlrtl;vclactnband;inet;IntrawebDB_80_100;Intraweb_80_100;vclie;inetdbbde;inetdbxpress;indy;dclOffice2k;VclSmp;soaprtl;dsnap;teeui;teedb;tee;vcldbx;dsnapcon;websnap;webdsnap</Directories>
+			<Directories Name="SearchPath">..\source</Directories>
+			<Directories Name="Packages"></Directories>
 			<Directories Name="Conditionals"></Directories>
 			<Directories Name="DebugSourceDirs"></Directories>
 			<Directories Name="UsePackages">False</Directories>
@@ -147,12 +147,12 @@
 		<VersionInfo>
 			<VersionInfo Name="IncludeVerInfo">True</VersionInfo>
 			<VersionInfo Name="AutoIncBuild">False</VersionInfo>
-			<VersionInfo Name="MajorVer">3</VersionInfo>
+			<VersionInfo Name="MajorVer">1</VersionInfo>
 			<VersionInfo Name="MinorVer">0</VersionInfo>
 			<VersionInfo Name="Release">0</VersionInfo>
-			<VersionInfo Name="Build">1</VersionInfo>
+			<VersionInfo Name="Build">0</VersionInfo>
 			<VersionInfo Name="Debug">False</VersionInfo>
-			<VersionInfo Name="PreRelease">True</VersionInfo>
+			<VersionInfo Name="PreRelease">False</VersionInfo>
 			<VersionInfo Name="Special">False</VersionInfo>
 			<VersionInfo Name="Private">False</VersionInfo>
 			<VersionInfo Name="DLL">False</VersionInfo>
@@ -160,16 +160,15 @@
 			<VersionInfo Name="CodePage">1252</VersionInfo>
 		</VersionInfo>
 		<VersionInfoKeys>
-			<VersionInfoKeys Name="CompanyName">Colin Wilson / sources restored by twm</VersionInfoKeys>
-			<VersionInfoKeys Name="FileDescription">XN Resource Editor</VersionInfoKeys>
-			<VersionInfoKeys Name="FileVersion">3.0.0.1</VersionInfoKeys>
-			<VersionInfoKeys Name="InternalName">XNResourceEditor</VersionInfoKeys>
-			<VersionInfoKeys Name="LegalCopyright">Copyright (c) Colin Wilson 2005</VersionInfoKeys>
-			<VersionInfoKeys Name="LegalTrademarks">All rights reserved</VersionInfoKeys>
-			<VersionInfoKeys Name="OriginalFilename">XNResourceEditor.exe</VersionInfoKeys>
-			<VersionInfoKeys Name="ProductName">XN Resource Editor</VersionInfoKeys>
-			<VersionInfoKeys Name="ProductVersion">3.0.0.1</VersionInfoKeys>
-			<VersionInfoKeys Name="Comments"></VersionInfoKeys>
+			<VersionInfoKeys Name="CompanyName"></VersionInfoKeys>
+			<VersionInfoKeys Name="FileDescription"></VersionInfoKeys>
+			<VersionInfoKeys Name="FileVersion">1.0.0.0</VersionInfoKeys>
+			<VersionInfoKeys Name="InternalName"></VersionInfoKeys>
+			<VersionInfoKeys Name="LegalCopyright"></VersionInfoKeys>
+			<VersionInfoKeys Name="LegalTrademarks"></VersionInfoKeys>
+			<VersionInfoKeys Name="OriginalFilename"></VersionInfoKeys>
+			<VersionInfoKeys Name="ProductName"></VersionInfoKeys>
+			<VersionInfoKeys Name="ProductVersion">1.0.0.0</VersionInfoKeys>
 		</VersionInfoKeys>
 	</Delphi.Personality>
 </BorlandProject>

@@ -1,4 +1,5 @@
-Currently the sources are only compilable in Delphi 2006
+NOTE: Currently the sources are only compilable in Delphi 2006
+
 To compile XNResourceEditor you need to install the prerequisites first:
 * TNTComponents:
   * open .\prerequisites\TNTComponents\Delphi\bds4\Delphi2006.bdsgroup
@@ -22,5 +23,13 @@ To compile XNResourceEditor you need to install the prerequisites first:
   * open .\prerequisites\ResourceUtils\Packages\BDS 2006\ResourceUtils.bdsproj
   * build the package
 * VirtualTreesExensions
-  * open .\prerequisites\d12componentpackages\Packages\Delphi2006
+  * open .\prerequisites\d12componentpackages\Packages\Delphi2006\VirtualTreesExensions.bdsgroup
+  * build both packages
+  * install the designtime package
+* XN Resource Editor Components
+  * open .\components\packages\Delphi2006\ResourceEditorComponents.bdsproj
   * build and install the package
+
+You are now ready to load the XNResourceEditor project
+.\source\XNResourceEditor.bdsproj
+and compile it.

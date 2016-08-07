@@ -35,8 +35,6 @@ uses
   FormResourceForm in 'FormResourceForm.pas' {fmRCDataFormResource},
   XPManifestResourceForm in 'XPManifestResourceForm.pas' {fmXPManifestResource},
   AcceleratorResourceForm in 'AcceleratorResourceForm.pas' {fmAcceleratorResource},
-  DialogStrings in 'DialogStrings.pas',
-  DialogSliderControls in 'DialogSliderControls.pas',
   CloneResourceDialog in 'CloneResourceDialog.pas' {dlgCloneResource},
   PropertyBaseForm in 'PropertyBaseForm.pas' {fmPropertyBase},
   PropertyPageForm in 'PropertyPageForm.pas' {fmPropertyPage},
@@ -48,7 +46,6 @@ uses
   IconCursorGraphicsResourceForm in 'IconCursorGraphicsResourceForm.pas' {fmIconCursorGraphicsResource},
   CursorGraphicsResourceForm in 'CursorGraphicsResourceForm.pas' {fmCursorGraphicsResource},
   IconGraphicsResourceForm in 'IconGraphicsResourceForm.pas' {fmIconGraphicsResource},
-  DialogListViewControls in 'DialogListViewControls.pas',
   FormTextInput in 'FormTextInput.pas' {fmTextInput};
 
 {$R *.RES}
