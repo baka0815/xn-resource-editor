@@ -1,0 +1,6 @@
+[submodule "VirtualTreeView"]
+	path = VirtualTreeView
+	url = https://github.com/TurboPack/VirtualTreeView.git
+[submodule "prerequisites/VirtualTreeview"]
+	path = prerequisites/VirtualTreeview
+	url = https://github.com/TurboPack/VirtualTreeView.git
